@@ -1,28 +1,40 @@
-// CustomerCardClient.tsx
 "use client";
 
 import { useState } from "react";
-import CustomerForm from "./CustomerForm";
-import { Customer } from "../../app/page";
-import { baseUrlCustomer } from "@/config";
-export interface CustomerInterface {
-  _id: string;
-  firstName: string;
-  lastName: string;
-  __v: number;
-}
+import { baseUrlTeacher } from "@/config";
+import TeacherForm from "./TeacherForm";
+import { TeacherListing, TeacherRequest } from "@/types/teacherType";
 
-const CustomerList = ({ customers }: { customers?: CustomerInterface[] }) => {
-  const [customer, setCustomer] = useState<Customer>();
+const TeacherList = ({
+  teachers,
+  fetchTeachers,
+}: {
+  teachers?: TeacherListing[];
+  fetchTeachers: () => void;
+}) => {
+  const [teacher, setTeacher] = useState<TeacherRequest>();
   const [isOpen, setIsOpen] = useState(false);
+
+  const getTeacher = (teacher: TeacherListing) => {
+    const { _id, firstName, lastName, gender, phoneNumber, subject } = teacher;
+    const teacherResult = {
+      _id,
+      firstName,
+      lastName,
+      gender,
+      phoneNumber,
+      subject: subject._id,
+    };
+    setTeacher(teacherResult);
+  };
 
   const handleDelete = async (id: string) => {
     try {
-      const response = await fetch(baseUrlCustomer, {
+      const response = await fetch(baseUrlTeacher, {
         method: "DELETE",
         body: JSON.stringify({ id: id }),
       });
-
+      fetchTeachers();
       if (!response.ok) {
         throw new Error("Something went wrong");
       }
@@ -34,7 +46,7 @@ const CustomerList = ({ customers }: { customers?: CustomerInterface[] }) => {
   return (
     <>
       <div>
-        {customers?.map((customer, index) => (
+        {teachers?.map((teacher, index) => (
           <div
             key={index}
             className="max-w-md mx-auto bg-white shadow-lg rounded-lg overflow-hidden mb-4 mt-4"
@@ -42,21 +54,22 @@ const CustomerList = ({ customers }: { customers?: CustomerInterface[] }) => {
             <div className="p-4 flex justify-between">
               <div>
                 <p className="text-lg font-semibold text-gray-900">
-                  {customer.firstName}
+                  {teacher.firstName}
                 </p>
-                <p className="text-gray-700">{customer.lastName}</p>
+                <p className="text-gray-700">{teacher.lastName}</p>
+                <p className="text-gray-700">{teacher.subject.name}</p>
               </div>
               <div className="flex gap-4">
                 <button
                   onClick={() => {
-                    setCustomer(customer);
+                    getTeacher(teacher);
                     setIsOpen(true);
                   }}
                 >
                   Edit
                 </button>
                 <button
-                  onClick={() => handleDelete(customer._id)}
+                  onClick={() => handleDelete(teacher._id)}
                   className="text-red-500"
                 >
                   Delete
@@ -68,10 +81,14 @@ const CustomerList = ({ customers }: { customers?: CustomerInterface[] }) => {
       </div>
 
       {isOpen && (
-        <CustomerForm customer={customer as Customer} setIsOpen={setIsOpen} />
+        <TeacherForm
+          fetchTeachers={fetchTeachers}
+          teacher={teacher as TeacherRequest}
+          setIsOpen={setIsOpen}
+        />
       )}
     </>
   );
 };
 
-export default CustomerList;
+export default TeacherList;

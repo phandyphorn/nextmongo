@@ -79,3 +79,6 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 - Look this link: https://www.mongodb.com/developer/products/atlas/how-to-connect-mongodb-atlas-to-vercel-using-the-new-integration/#prerequisites
 
 
+<!-- ============ -->
+- I use only route and get the function to use directly (teacher crud)
+- I use useQuery in hook and then get them to use (student crud)

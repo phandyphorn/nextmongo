@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+// in posts db.
 const customerSchema = new mongoose.Schema({
   firstName: {
     type: String,

@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Customer } from "../page";
 import CustomerForm from "../../components/customer/CustomerForm";
 import CustomerList from "../../components/customer/CustomerList";
-import { baseUrl } from "@/config";
+import { baseUrlCustomer } from "@/config";
 
 const CustomerPage = () => {
   const [customers, setCustomers] = useState<Customer[]>([]);
@@ -19,7 +19,7 @@ const CustomerPage = () => {
 
   useEffect(() => {
     async function fetchCustomers() {
-      let res = await fetch(baseUrl);
+      let res = await fetch(baseUrlCustomer);
       let data = await res.json();
       setCustomers(data as Customer[]);
     }

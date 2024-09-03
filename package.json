@@ -9,6 +9,9 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.56.2",
+    "@tanstack/react-query-devtools": "^5.56.2",
+    "axios": "^1.7.7",
     "mongoose": "^8.6.1",
     "next": "14.2.7",
     "react": "^18",
@@ -16,6 +19,7 @@
     "vercel": "^32.3.0"
   },
   "devDependencies": {
+    "@tanstack/eslint-plugin-query": "^5.56.1",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

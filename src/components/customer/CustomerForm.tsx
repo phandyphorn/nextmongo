@@ -1,8 +1,7 @@
-// components/CustomerForm.tsx
 "use client";
 
 import { Customer } from "@/app/page";
-import { baseUrl } from "@/config";
+import { baseUrlCustomer } from "@/config";
 import { useEffect, useState } from "react";
 
 const CustomerForm = ({
@@ -25,7 +24,7 @@ const CustomerForm = ({
     try {
       if (customer?._id) {
         try {
-          const response = await fetch(baseUrl, {
+          const response = await fetch(baseUrlCustomer, {
             method: "PUT",
             body: JSON.stringify({
               id: customer._id,
@@ -44,7 +43,7 @@ const CustomerForm = ({
           console.log(err);
         }
       }
-      const response = await fetch(baseUrl, {
+      const response = await fetch(baseUrlCustomer, {
         method: "POST",
         body: JSON.stringify({ firstName, lastName }),
       });
