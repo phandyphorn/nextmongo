@@ -73,3 +73,7 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 - sudo docker images: to see image in the container of docker
 - sudo ps: to see container of docker.
 
+==== When we deploy on vercel, we no need to change direction. Just change  (deploy only next)
+
+=== I deploy next + 
+

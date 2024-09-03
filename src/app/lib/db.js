@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
+const MONGODB = process.env.MONGO_URI;
 
-if (!process.env.MONGO_URI) {
+if (!MONGODB) {
   throw new Error(
     "Please define the MONGODB_URI environment variable inside .env.local"
   );
@@ -21,14 +22,10 @@ async function dbConnect() {
       bufferCommands: false,
     };
 
-    global.Promise = mongoose
-      .connect(process.env.MONGO_URI, opts)
-      .then((mongoose) => {
-        console
-          .log("Db connected")
-          .catch((err) => console.log("MongoDB connection error: ", err));
-        return mongoose;
-      });
+    cached.Promise = mongoose.connect(MONGODB, opts).then((mongoose) => {
+      console.log("Db connected");
+      return mongoose;
+    });
   }
   try {
     cached.conn = await cached.promise;
