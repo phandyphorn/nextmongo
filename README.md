@@ -75,5 +75,7 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 
 ==== When we deploy on vercel, we no need to change direction. Just change  (deploy only next)
 
-=== I deploy next + 
+=== I deploy next + vercel
+- Look this link: https://www.mongodb.com/developer/products/atlas/how-to-connect-mongodb-atlas-to-vercel-using-the-new-integration/#prerequisites
+
 

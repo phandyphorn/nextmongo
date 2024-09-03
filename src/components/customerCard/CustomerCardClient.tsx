@@ -6,6 +6,7 @@ export interface CustomerInterface {
   _id: string;
   firstName: string;
   lastName: string;
+  __v: number;
 }
 
 const CustomerCardClient = ({
