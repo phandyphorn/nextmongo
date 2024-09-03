@@ -1,22 +1,12 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { baseUrlTeacher } from "@/config";
-import { TeacherListing } from "@/types/teacherType";
+import React, { useState } from "react";
 import StudentForm from "@/components/student/StudentForm";
 import StudentList from "@/components/student/StudentList";
-import { StudentListing } from "@/types/studentType";
 import useQueryStudents from "@/hooks/useQueryStudents";
 
 const StudentPage = () => {
   const [isOpen, setIsOpen] = useState(false);
-
-  const student = {
-    _id: "",
-    firstName: "",
-    lastName: "",
-    gender: "",
-  };
 
   const { students, refetch } = useQueryStudents();
 
@@ -32,11 +22,7 @@ const StudentPage = () => {
         </button>
 
         {isOpen && (
-          <StudentForm
-            fetchStudents={refetch}
-            student={student}
-            setIsOpen={setIsOpen}
-          />
+          <StudentForm fetchStudents={refetch} id={""} setIsOpen={setIsOpen} />
         )}
       </div>
       <StudentList fetchStudents={refetch} students={students} />
