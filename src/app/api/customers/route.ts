@@ -1,7 +1,6 @@
 import Customer from "@/models/Customer";
 import dbConnect from "../../lib/db";
 import { NextResponse } from "next/server";
-import { headers } from "next/headers";
 
 // Handle GET requests
 export async function GET(req: Request) {
