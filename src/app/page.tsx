@@ -1,6 +1,7 @@
 "use client";
 
 import CustomerFormClient from "@/components/customerForm/CustomerFormClient";
+import { NEXT_LOCAL_URL, NEXT_PRODUCT_URL } from "@/config";
 import { useState, useEffect } from "react";
 export interface Customer {
   _id: string;
@@ -13,8 +14,8 @@ export default function Home() {
   const [customers, setCustomers] = useState<Customer[]>([]);
   const baseUrl =
     process.env.NODE_ENV === "production"
-      ? "https://schs.vercel.app/api/customers"
-      : "http://localhost:3000/api/customers";
+      ? `${NEXT_PRODUCT_URL}/api/customers`
+      : `${NEXT_LOCAL_URL}/api/customers`;
 
   useEffect(() => {
     async function fetchCustomers() {
