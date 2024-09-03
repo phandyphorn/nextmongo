@@ -9,11 +9,11 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "mongoose": "^8.6.0",
+    "mongoose": "^8.6.1",
     "next": "14.2.7",
     "react": "^18",
     "react-dom": "^18.3.1",
-    "vercel": "^37.4.0"
+    "vercel": "^32.3.0"
   },
   "devDependencies": {
     "@types/node": "^20",
