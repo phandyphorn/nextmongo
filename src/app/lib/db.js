@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+
 const MONGODB = process.env.MONGO_URI;
 
 if (!MONGODB) {
@@ -22,10 +23,18 @@ async function dbConnect() {
       bufferCommands: false,
     };
 
-    cached.Promise = mongoose.connect(MONGODB, opts).then((mongoose) => {
-      console.log("Db connected");
-      return mongoose;
-    });
+    cached.Promise = mongoose
+      .connect(MONGODB, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        serverSelectionTimeoutMS: 5000, // 5 seconds timeout for server selection
+        socketTimeoutMS: 45000, // 45 seconds timeout for socket
+        connectTimeoutMS: 10000, // 10 seconds connection timeout
+      })
+      .then((mongoose) => {
+        console.log("Db connected");
+        return mongoose;
+      });
   }
   try {
     cached.conn = await cached.promise;
