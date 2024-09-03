@@ -2,10 +2,10 @@
 "use server";
 
 import { getCustomers } from "@/actions/customerAction";
-import CustomerCardClient, { Customer } from "./CustomerCardClient";
+import CustomerCardClient, { CustomerInterface } from "./CustomerCardClient";
 
 const CustomerCardServer = async () => {
-  const customers = (await getCustomers()) as Customer[];
+  const customers = (await getCustomers()) as CustomerInterface[];
 
   return <CustomerCardClient customers={customers} />;
 };

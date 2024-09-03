@@ -1,10 +1,10 @@
 import CustomerCardServer from "@/components/customerCard/CustomerCardServer";
-import CustomerFormServer from "@/components/customerForm/CustomerFormServer";
+import CustomerFormClient from "@/components/customerForm/CustomerFormClient";
 
 export default async function Home() {
   return (
     <>
-      <CustomerFormServer />
+      <CustomerFormClient />
       <CustomerCardServer />
     </>
   );
