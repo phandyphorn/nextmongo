@@ -1,6 +1,4 @@
-// CustomerFormServer.tsx
 "use server";
-
 import { addCustomer } from "@/actions/customerAction";
 import CustomerFormClient from "./CustomerFormClient";
 
