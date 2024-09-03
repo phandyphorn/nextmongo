@@ -21,7 +21,7 @@ async function dbConnect() {
       bufferCommands: false,
     };
 
-    cached.promise = mongoose
+    global.Promise = mongoose
       .connect(process.env.MONGO_URI, opts)
       .then((mongoose) => {
         console
