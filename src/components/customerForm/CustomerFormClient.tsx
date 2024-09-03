@@ -1,13 +1,6 @@
 "use client";
-<<<<<<< HEAD
-import { useState } from "react";
-import { Customer } from "../customerCard/CustomerCardClient";
-
-const CustomerFormClient = ({
-=======
 import { useEffect, useState } from "react";
 import {
->>>>>>> 9fc6416 (develop crud)
   addCustomer,
   getCustomerById,
   updateCustomer,
