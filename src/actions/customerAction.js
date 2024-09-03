@@ -7,7 +7,7 @@ const addCustomer = async (customer) => {
     if (!customer && (!firstName === "" || !lastName)) return;
     return await new Customer(customer).save();
   } catch (err) {
-    console.log(err);
+    console.log("error: ", err);
   }
 };
 
@@ -24,7 +24,7 @@ const updateCustomer = async (customer) => {
       }
     );
   } catch (err) {
-    console.log(err);
+    console.log("error: ", err);
   }
 };
 
@@ -33,7 +33,7 @@ const deleteCustomer = async (customerId) => {
     if (!customerId) return;
     return Customer.deleteOne({ _id: customerId });
   } catch (err) {
-    console.log(err);
+    console.log("error: ", err);
   }
 };
 
@@ -41,4 +41,14 @@ const getCustomers = async () => {
   return Customer.find();
 };
 
-export { addCustomer, getCustomers, deleteCustomer, updateCustomer };
+const getCustomerById = async (customerId) => {
+  return Customer.findById({ _id: customerId });
+};
+
+export {
+  addCustomer,
+  getCustomers,
+  deleteCustomer,
+  updateCustomer,
+  getCustomerById,
+};

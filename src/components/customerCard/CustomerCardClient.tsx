@@ -1,37 +1,41 @@
 // CustomerCardClient.tsx
 "use client";
-import { deleteCustomer, updateCustomer } from "@/actions/customerAction";
-export interface Customer {
+import { deleteCustomer, getCustomerById } from "@/actions/customerAction";
+import { useState } from "react";
+export interface CustomerInterface {
   _id: string;
   firstName: string;
   lastName: string;
 }
 
-const CustomerCardClient = ({ customers }: { customers: Customer[] }) => {
-  const handleEdit = async (customer: Customer) => {
-    try {
-      if (!customer._id) return;
-      await updateCustomer(customer);
-    } catch (err) {
-      console.log(err);
-    }
-    alert(`Click to edit ${customer._id}`);
-  };
-
+const CustomerCardClient = ({
+  customers,
+}: {
+  customers?: CustomerInterface[];
+}) => {
+  const [customer, setCustomer] = useState({});
   const handleDelete = async (customerId: string) => {
     try {
       await deleteCustomer(customerId);
       alert(`Customer with id ${customerId} deleted`);
     } catch (err) {
-      console.log(err);
+      console.log("error: ", err);
     }
+  };
 
-    // Optionally, trigger a re-fetch or update the UI here
+  const handleGetById = async (customerId: string) => {
+    try {
+      const customerForUpdate = await getCustomerById(customerId);
+      setCustomer(customer);
+      alert(`Customer with id ${customerId} for update`);
+    } catch (err) {
+      console.log("err: ", err);
+    }
   };
 
   return (
     <div>
-      {customers.map((customer, index) => (
+      {customers?.map((customer, index) => (
         <div
           key={index}
           className="max-w-md mx-auto bg-white shadow-lg rounded-lg overflow-hidden mb-4 mt-4"
@@ -44,7 +48,7 @@ const CustomerCardClient = ({ customers }: { customers: Customer[] }) => {
               <p className="text-gray-700">{customer.lastName}</p>
             </div>
             <div className="flex gap-4">
-              <button onClick={() => handleEdit(customer)}>Edit</button>
+              <button onClick={() => handleGetById(customer._id)}>Edit</button>
               <button
                 onClick={() => handleDelete(customer._id)}
                 className="text-red-500"

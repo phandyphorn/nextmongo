@@ -29,7 +29,7 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Deploy on Vercel (click on the link, and we could contribute with vercel)
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
@@ -42,3 +42,34 @@ I have:
 - .env.local
 - instrumentations.js
 - lib/db.js
+
+
+==I built in docker so I need:
+- Install docker:
+  +  Set up docker first:
+  - Dockerfile
+  - docker-compose.yml
+
+  ** Set up Docker's apt repository.
+sudo apt-get update
+sudo apt-get install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+sudo apt-get update
+
+  ** Install the Docker packages. (choose the latest)
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+  ** Test it work or not:
+  sudo docker run hello-world
+  ** or check version: docker --version
+  
+
+- Dockerfile in the next project.
+
+==== run on docker vs run on marchine.
+- sudo docker images: to see image in the container of docker
+- sudo ps: to see container of docker.
+
