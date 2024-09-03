@@ -37,9 +37,9 @@ const deleteCustomer = async (customerId) => {
   }
 };
 
-const getCustomers = async () => {
-  return Customer.find();
-};
+// const getCustomers = async () => {
+//   return Customer.find();
+// };
 
 const getCustomerById = async (customerId) => {
   return Customer.findById({ _id: customerId });
@@ -47,7 +47,7 @@ const getCustomerById = async (customerId) => {
 
 export {
   addCustomer,
-  getCustomers,
+  // getCustomers,
   deleteCustomer,
   updateCustomer,
   getCustomerById,
