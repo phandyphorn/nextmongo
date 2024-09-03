@@ -14,8 +14,6 @@ const CustomerForm = ({
 }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [error, setError] = useState<string | null>(null);
-  const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
   useEffect(() => {
     setFirstName(customer.firstName);
@@ -24,10 +22,6 @@ const CustomerForm = ({
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-
-    setError(null);
-    setSuccessMessage(null);
-
     try {
       if (customer?._id) {
         try {
@@ -61,7 +55,6 @@ const CustomerForm = ({
         throw new Error(data.message || "Something went wrong");
       }
 
-      setSuccessMessage(`Customer added`);
       setFirstName("");
       setLastName("");
       setIsOpen(false);
@@ -115,14 +108,14 @@ const CustomerForm = ({
               onClick={() => setIsOpen(false)}
               data-modal-hide="popup-modal"
               type="button"
-              className="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center"
+              className="text-black bg-gray-200 hover:bg-gray-300 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center"
             >
               Cancel
             </button>
             <button
               data-modal-hide="popup-modal"
               type="submit"
-              className="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+              className="py-2.5 px-5 ms-3 text-sm font-medium text-white focus:outline-none bg-blue-500 rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
             >
               {customer?._id ? "Save" : "Create"}
             </button>
