@@ -5,6 +5,7 @@
 import { useState } from "react";
 import CustomerForm from "./CustomerForm";
 import { Customer } from "../../app/page";
+import { baseUrl } from "@/config";
 export interface CustomerInterface {
   _id: string;
   firstName: string;
