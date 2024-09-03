@@ -15,10 +15,7 @@ export async function GET(req: Request) {
     const res = NextResponse.json(customers);
 
     // Set CORS headers
-    res.headers.set(
-      "Access-Control-Allow-Origin",
-      "https://vercel.com/phandyphorns-projects-9bdc8697/schs/71Toa1tiGjn9bop3aVxRhPDkaLyG"
-    ); // Allow from any origin
+    res.headers.set("Access-Control-Allow-Origin", "https://schs.vercel.app/"); // Allow from any origin
     res.headers.set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE"); // Allowed HTTP methods
     res.headers.set("Access-Control-Allow-Headers", "Content-Type"); // Allowed headers
 

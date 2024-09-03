@@ -5,7 +5,7 @@
       "headers": [
         {
           "key": "Access-Control-Allow-Origin",
-          "value": "https://vercel.com/phandyphorns-projects-9bdc8697/schs/71Toa1tiGjn9bop3aVxRhPDkaLyG"
+          "value": "https://schs.vercel.app/"
         },
         {
           "key": "Access-Control-Allow-Methods",
