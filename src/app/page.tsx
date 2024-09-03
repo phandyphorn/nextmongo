@@ -4,10 +4,8 @@ import CustomerFormClient from "@/components/customerForm/CustomerFormClient";
 export default async function Home() {
   return (
     <>
-      {/* <CustomerFormClient />
-      <CustomerCardServer /> */}
-
-      <p>This is deployment in vercel!</p>
+      <CustomerFormClient />
+      <CustomerCardServer />
     </>
   );
 }
