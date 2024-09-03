@@ -48,13 +48,14 @@
 
 // export default dbConnect;
 
+import mongoose from "mongoose";
 
-import mongoose from 'mongoose';
-
-const MONGO_URI = process.env.MONGO_URI || '';
+const MONGO_URI = process.env.MONGO_URI || "";
 
 if (!MONGO_URI) {
-  throw new Error('Please define the MONGO_URI environment variable inside .env.local');
+  throw new Error(
+    "Please define the MONGO_URI environment variable inside .env.local"
+  );
 }
 
 let cached = global.mongoose;
@@ -69,14 +70,18 @@ async function connectMongo() {
   }
 
   if (!cached.promise) {
-    cached.promise = mongoose.connect(MONGO_URI, {
-      bufferCommands: false,
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      connectTimeoutMS: 20000,  // Increase timeout to 20 seconds
-    }).then((mongoose) => {
-      return mongoose;
-    });
+    cached.promise = mongoose
+      .connect(MONGO_URI, {
+        bufferCommands: false,
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        keepAlive: true,
+        keepAliveInitialDelay: 300000,
+        connectTimeoutMS: 20000, // Increase timeout to 20 seconds
+      })
+      .then((mongoose) => {
+        return mongoose;
+      });
   }
   cached.conn = await cached.promise;
   return cached.conn;
