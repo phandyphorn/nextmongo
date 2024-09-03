@@ -1,9 +1,8 @@
 "use server";
-import { addCustomer } from "@/actions/customerAction";
 import CustomerFormClient from "./CustomerFormClient";
 
 const CustomerFormServer = async () => {
-  return <CustomerFormClient addCustomer={addCustomer} />;
+  return <CustomerFormClient />;
 };
 
 export default CustomerFormServer;
