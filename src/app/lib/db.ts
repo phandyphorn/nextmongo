@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const MONGODB = process.env.MONGO_URI;
+const MONGODB = process.env.MONGO_URI || "";
 
 if (!MONGODB) {
   throw new Error(
@@ -8,10 +8,10 @@ if (!MONGODB) {
   );
 }
 
-let cached = global.mongoose;
+let cached = (global as any).mongoose;
 
 if (!cached) {
-  cached = global.mongoose = { conn: null, promise: null };
+  cached = (global as any) = { conn: null, promise: null };
 }
 
 async function dbConnect() {
@@ -25,7 +25,6 @@ async function dbConnect() {
 
     cached.promise = mongoose
       .connect(MONGODB, {
-        useNewUrlParser: true, // Ensures MongoDB URI parser is used
         serverSelectionTimeoutMS: 5000, // 5 seconds timeout for server selection
         socketTimeoutMS: 45000, // 45 seconds timeout for socket
         connectTimeoutMS: 10000, // 10 seconds connection timeout

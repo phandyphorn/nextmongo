@@ -1,6 +1,12 @@
 export const NEXT_PRODUCT_URL = process.env.NEXT_APP_PRO_SSO_URL || "";
 export const NEXT_LOCAL_URL = process.env.NEXT_APP_SSO_URL || "";
 
+export const baseUrl =
+process.env.NODE_ENV === "production"
+  ? `${NEXT_PRODUCT_URL}/api/customers`
+  : `${NEXT_LOCAL_URL}/api/customers`;
+
+
 export type ConfigProps = {
   layout: string;
   drawerType: string;
